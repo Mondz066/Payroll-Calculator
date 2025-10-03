@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payroll Calculator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: black;
+        }
+        .card {
+            background-color: #1f2937; /* Dark Gray 800 */
+            border-radius: 0.75rem;
+        }
+        .info-box {
+            background-color: #374151; /* Dark Gray 700 */
+            border: 1px solid #4b5563; /* Dark Gray 600 */
+            border-radius: 0.5rem;
+            padding: 0.75rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .period-card {
+            border: 1px solid #4b5563; /* Dark Gray 600 */
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            background-color: #111827; /* Dark Gray 900 */
+            display: flex;
+            flex-direction: column;
+        }
+        .input-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.25rem 1rem;
+        }
+        .placeholder-style {
+            color: #9ca3af; /* Gray 400 */
+        }
+        /* Custom styles for dark mode inputs */
+        input[type="number"] {
+            background-color: #374151;
+            color: white;
+            border-color: #4b5563;
+        }
+        input[type="number"]:focus {
+            --tw-ring-color: #4f46e5; /* Indigo 600 */
+            border-color: #4f46e5;
+        }
+    </style>
+</head>
+<body class="p-2 sm:p-4">
+
+    <div class="w-full max-w-5xl mx-auto card p-4 sm:p-6 md:p-8 space-y-6">
+        <!-- Header -->
+        <div class="text-center">
+            <h1 class="text-2xl sm:text-3xl font-bold text-white">Payroll Calculator</h1>
+            <p class="text-gray-400 mt-2">by Henry</p>
+        </div>
+
+        <!-- Fixed Salary Information -->
+        <div class="p-4 bg-gray-900 rounded-lg">
+            <div class="info-box">
+                <span class="text-sm font-medium text-gray-300">Monthly Basic Salary:</span>
+                <span class="text-lg sm:text-xl font-semibold text-blue-400">₱20,000.00</span>
+            </div>
+        </div>
+
+        <!-- Pay Period Calculators -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <!-- Period 1: 1st - 15th -->
+            <div class="period-card">
+                <div class="flex-grow space-y-6">
+                    <h2 class="text-xl font-semibold text-gray-200 border-b border-gray-600 pb-3">Pay Period: 1st - 15th</h2>
+                    
+                    <!-- Absences -->
+                    <div>
+                        <label for="absentDays1" class="text-sm font-medium text-gray-300 block mb-1">Absent Days:</label>
+                        <input type="number" id="absentDays1" placeholder="0" value="0" min="0" class="w-full px-3 py-2 border rounded-lg focus:ring-2">
+                    </div>
+
+                    <!-- Additions -->
+                    <div>
+                        <h3 class="text-md font-semibold text-gray-300 mb-2">Additional Earnings (Hours)</h3>
+                        <div class="input-grid">
+                            <div>
+                                <label for="regOT1" class="text-xs text-gray-400">Regular OT</label>
+                                <input type="number" id="regOT1" placeholder="0" value="0" min="0" class="w-full px-3 py-2 border rounded-lg">
+                            </div>
+                            <div>
+                               <label for="nd1" class="text-xs text-gray-400">Night Diff</label>
+                               <input type="number" id="nd1" placeholder="0" value="0" min="0" class="w-full px-3 py-2 border rounded-lg">
+                            </div>
+                            <div>
+                                <label for="rd1" class="text-xs text-gray-400">Restday(Sunday)</label>
+                                <input type="number" id="rd1" placeholder="0" value="0" min="0" class="w-full px-3 py-2 border rounded-lg">
+                            </div>
+                            <div>
+                                <label for="rdOT1" class="text-xs text-gray-400">Rest Day OT</label>
+                                <input type="number" id="rdOT1" placeholder="0" value="0" min="0" class="w-full px-3 py-2 border rounded-lg">
+                            </div>
+                            <div>
+                                <label for="rdND1" class="text-xs text-gray-400">Restday Night Diff</label>
+                                <input type="number" id="rdND1" placeholder="0" value="0" min="0" class="w-full px-3 py-2 border rounded-lg">
+                            </div>
+                            <div>
+                                <label for="rdNDOT1" class="text-xs text-gray-400">Restday NDOT</label>
+                                <input type="number" id="rdNDOT1" placeholder="0" value="0" min="0" class="w-full px-3 py-2 border rounded-lg">
+                            </div>
+                            <div>
+                                <label for="legalHoliday1" class="text-xs text-gray-400">Legal Holiday</label>
+                                <input type="number" id="legalHoliday1" placeholder="0" value="0" min="0" class="w-full px-3 py-2 border rounded-lg">
+                            </div>
+                             <div>
+                                <label for="specialHoliday1" class="text-xs text-gray-400">Special Holiday</label>
+                                <input type="number" id="specialHoliday1" placeholder="0" value="0" min="0" class="w-full px-3 py-2 border rounded-lg">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Results for Period 1 -->
+                    <div id="result1" class="hidden pt-4 space-y-3">
+                        <div class="info-box">
+                            <span class="text-sm text-gray-300">Basic Pay:</span><span class="font-semibold text-white">₱10,000.00</span>
+                        </div>
+                        <div class="info-box border-red-500 bg-transparent">
+                            <span class="text-sm text-red-400">Absence Deduction:</span>
+                            <span id="deduction1" class="font-semibold text-red-400"></span>
+                        </div>
+                        <div class="info-box border-green-500 bg-transparent">
+                            <span class="text-sm text-green-400">Total Additions:</span>
+                            <span id="additions1" class="font-semibold text-green-400"></span>
+                        </div>
+                        <div class="info-box bg-gray-900 text-white mt-2">
+                            <span class="text-lg font-bold">Period Net Pay:</span>
+                            <span id="netPay1" class="text-lg font-bold"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-6 space-y-2">
+                    <button id="calculateBtn1" class="w-full bg-indigo-600 text-white font-semibold py-3 px-4 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-300 text-lg">
+                       Calculate Period 1 Pay
+                   </button>
+                    <button id="clearBtn1" class="w-full bg-gray-600 text-gray-200 font-semibold py-2 px-4 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition duration-300 text-sm">
+                       Clear All
+                   </button>
+               </div>
+            </div>
+
+            <!-- Period 2: 16th - 30th -->
+            <div class="period-card">
+                <div class="flex-grow space-y-6">
+                    <h2 class="text-xl font-semibold text-gray-200 border-b border-gray-600 pb-3">Pay Period: 16th - 30th</h2>
+                    
+                    <!-- Absences -->
+                    <div>
+                        <label for="absentDays2" class="text-sm font-medium text-gray-300 block mb-1">Absent Days:</label>
+                        <input type="number" id="absentDays2" placeholder="0" value="0" min="0" class="w-full px-3 py-2 border rounded-lg focus:ring-2">
+                    </div>
+
+                    <!-- Additions -->
+                    <div>
+                        <h3 class="text-md font-semibold text-gray-300 mb-2">Additional Earnings (Hours)</h3>
+                        <div class="input-grid">
+                            <div>
+                                <label for="regOT2" class="text-xs text-gray-400">Regular OT</label>
+                                <input type="number" id="regOT2" placeholder="0" value="0" min="0" class="w-full px-3 py-2 border rounded-lg">
+                            </div>
+                            <div>
+                               <label for="nd2" class="text-xs text-gray-400">Night Diff</label>
+                               <input type="number" id="nd2" placeholder="0" value="0" min="0" class="w-full px-3 py-2 border rounded-lg">
+                            </div>
+                            <div>
+                                <label for="rd2" class="text-xs text-gray-400">Restday(Sunday)</label>
+                                <input type="number" id="rd2" placeholder="0" value="0" min="0" class="w-full px-3 py-2 border rounded-lg">
+                            </div>
+                            <div>
+                                <label for="rdOT2" class="text-xs text-gray-400">Rest Day OT</label>
+                                <input type="number" id="rdOT2" placeholder="0" value="0" min="0" class="w-full px-3 py-2 border rounded-lg">
+                            </div>
+                             <div>
+                                <label for="rdND2" class="text-xs text-gray-400">Restday Night Diff</label>
+                                <input type="number" id="rdND2" placeholder="0" value="0" min="0" class="w-full px-3 py-2 border rounded-lg">
+                            </div>
+                            <div>
+                                <label for="rdNDOT2" class="text-xs text-gray-400">Restday NDOT</label>
+                                <input type="number" id="rdNDOT2" placeholder="0" value="0" min="0" class="w-full px-3 py-2 border rounded-lg">
+                            </div>
+                            <div>
+                                <label for="legalHoliday2" class="text-xs text-gray-400">Legal Holiday</label>
+                                <input type="number" id="legalHoliday2" placeholder="0" value="0" min="0" class="w-full px-3 py-2 border rounded-lg">
+                            </div>
+                             <div>
+                                <label for="specialHoliday2" class="text-xs text-gray-400">Special Holiday</label>
+                                <input type="number" id="specialHoliday2" placeholder="0" value="0" min="0" class="w-full px-3 py-2 border rounded-lg">
+                            </div>
+                        </div>
+                    </div>
+                     <!-- Results for Period 2 -->
+                    <div id="result2" class="hidden pt-4 space-y-3">
+                         <div class="info-box">
+                            <span class="text-sm text-gray-300">Basic Pay:</span><span class="font-semibold text-white">₱10,000.00</span>
+                        </div>
+                        <div class="info-box border-red-500 bg-transparent">
+                            <span class="text-sm text-red-400">Absence Deduction:</span>
+                            <span id="deduction2" class="font-semibold text-red-400"></span>
+                        </div>
+                        <div class="info-box border-green-500 bg-transparent">
+                            <span class="text-sm text-green-400">Total Additions:</span>
+                            <span id="additions2" class="font-semibold text-green-400"></span>
+                        </div>
+                        <div class="info-box bg-gray-900 text-white mt-2">
+                            <span class="text-lg font-bold">Period Net Pay:</span>
+                            <span id="netPay2" class="text-lg font-bold"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-6 space-y-2">
+                     <button id="calculateBtn2" class="w-full bg-indigo-600 text-white font-semibold py-3 px-4 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-300 text-lg">
+                        Calculate Period 2 Pay
+                    </button>
+                     <button id="clearBtn2" class="w-full bg-gray-600 text-gray-200 font-semibold py-2 px-4 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition duration-300 text-sm">
+                       Clear All
+                   </button>
+                </div>
+            </div>
+        </div>
+        
+         <!-- Error Message -->
+        <div id="error-message" class="hidden text-center text-red-500 font-medium p-3 bg-red-900 bg-opacity-50 border border-red-500 rounded-lg mt-8"></div>
+    </div>
+
+    <script>
+        // --- Fixed Rates ---
+        const RATES = {
+            REGULAR_OT: 119.81,
+            NIGHT_DIFFERENTIAL: 9.58,
+            REST_DAY: 124.60,
+            REST_DAY_OT: 161.98,
+            RESTDAY_ND: 12.46,
+            RESTDAY_NDOT: 16.20,
+            LEGAL_HOLIDAY: 95.85,
+            SPECIAL_HOLIDAY: 28.75
+        };
+        const PERIOD_PAY = 10000;
+        const EXPECTED_WORK_DAYS = 13;
+        const DAILY_RATE = PERIOD_PAY / EXPECTED_WORK_DAYS;
+
+
+        // --- Element Selection ---
+        const calculateBtn1 = document.getElementById('calculateBtn1');
+        const calculateBtn2 = document.getElementById('calculateBtn2');
+        const clearBtn1 = document.getElementById('clearBtn1');
+        const clearBtn2 = document.getElementById('clearBtn2');
+        const errorMessage = document.getElementById('error-message');
+        const allNumericInputs = document.querySelectorAll('.period-card input[type="number"]');
+
+        // --- Core Functions ---
+        function calculatePeriod(periodNum) {
+            errorMessage.classList.add('hidden');
+            const absentDays = parseFloat(document.getElementById(`absentDays${periodNum}`).value) || 0;
+            const regOT = parseFloat(document.getElementById(`regOT${periodNum}`).value) || 0;
+            const nd = parseFloat(document.getElementById(`nd${periodNum}`).value) || 0;
+            const rd = parseFloat(document.getElementById(`rd${periodNum}`).value) || 0;
+            const rdOT = parseFloat(document.getElementById(`rdOT${periodNum}`).value) || 0;
+            const rdND = parseFloat(document.getElementById(`rdND${periodNum}`).value) || 0;
+            const rdNDOT = parseFloat(document.getElementById(`rdNDOT${periodNum}`).value) || 0;
+            const legalHoliday = parseFloat(document.getElementById(`legalHoliday${periodNum}`).value) || 0;
+            const specialHoliday = parseFloat(document.getElementById(`specialHoliday${periodNum}`).value) || 0;
+
+
+            if (absentDays < 0 || absentDays > EXPECTED_WORK_DAYS) {
+                showError(`Absences for Period ${periodNum} must be between 0 and ${EXPECTED_WORK_DAYS}.`);
+                document.getElementById(`result${periodNum}`).classList.add('hidden');
+                return;
+            }
+
+            const deduction = absentDays * DAILY_RATE;
+            
+            const regularOtPay = regOT * RATES.REGULAR_OT;
+            const nightDiffPay = nd * RATES.NIGHT_DIFFERENTIAL;
+            const restDayPay = rd * RATES.REST_DAY;
+            const restDayOtPay = rdOT * RATES.REST_DAY_OT;
+            const restdayNdPay = rdND * RATES.RESTDAY_ND;
+            const restdayNdotPay = rdNDOT * RATES.RESTDAY_NDOT;
+            const legalHolidayPay = legalHoliday * RATES.LEGAL_HOLIDAY;
+            const specialHolidayPay = specialHoliday * RATES.SPECIAL_HOLIDAY;
+
+            const totalAdditions = regularOtPay + nightDiffPay + restDayPay + restDayOtPay + restdayNdPay + restdayNdotPay + legalHolidayPay + specialHolidayPay;
+            const netPay = (PERIOD_PAY - deduction) + totalAdditions;
+
+            document.getElementById(`deduction${periodNum}`).textContent = `- ₱${deduction.toFixed(2)}`;
+            document.getElementById(`additions${periodNum}`).textContent = `+ ₱${totalAdditions.toFixed(2)}`;
+            document.getElementById(`netPay${periodNum}`).textContent = `₱${netPay.toFixed(2)}`;
+            document.getElementById(`result${periodNum}`).classList.remove('hidden');
+        }
+
+        function clearPeriod(periodNum) {
+            const periodCard = document.getElementById(`calculateBtn${periodNum}`).closest('.period-card');
+            const inputsInPeriod = periodCard.querySelectorAll('input[type="number"]');
+            
+            inputsInPeriod.forEach(input => {
+                input.value = 0;
+                applyPlaceholderStyle(input);
+            });
+
+            document.getElementById(`result${periodNum}`).classList.add('hidden');
+            errorMessage.classList.add('hidden');
+        }
+
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.classList.remove('hidden');
+        }
+
+        // --- Placeholder Styling Logic ---
+        function applyPlaceholderStyle(input) {
+            if (input.value === '0' || input.value === '') {
+                input.classList.add('placeholder-style');
+            } else {
+                input.classList.remove('placeholder-style');
+            }
+        }
+
+        allNumericInputs.forEach(input => {
+            applyPlaceholderStyle(input); // Initial style check on page load
+
+            input.addEventListener('focus', () => {
+                if (input.value === '0') {
+                    input.value = '';
+                }
+                input.classList.remove('placeholder-style');
+            });
+
+            input.addEventListener('blur', () => {
+                if (input.value === '') {
+                    input.value = '0';
+                }
+                applyPlaceholderStyle(input);
+            });
+        });
+        
+        // --- Event Listeners ---
+        calculateBtn1.addEventListener('click', () => calculatePeriod(1));
+        calculateBtn2.addEventListener('click', () => calculatePeriod(2));
+        clearBtn1.addEventListener('click', () => clearPeriod(1));
+        clearBtn2.addEventListener('click', () => clearPeriod(2));
+
+    </script>
+
+</body>
+</html>
+
+
